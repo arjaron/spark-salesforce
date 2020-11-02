@@ -24,7 +24,7 @@ import org.apache.spark.{SparkContext, SparkConf}
  */
 object InMemoryWrite {
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
 
     val sparkConf = new SparkConf().setMaster(args(0)).setAppName("csv write")
     val sc = new SparkContext(sparkConf)

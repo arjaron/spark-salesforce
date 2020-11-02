@@ -1,21 +1,19 @@
 package com.springml.spark.salesforce
 
-import java.text.SimpleDateFormat
 
 import com.springml.salesforce.wave.api.{APIFactory, BulkAPI}
-import org.apache.log4j.Logger
-import org.apache.spark.sql.{DataFrame, Dataset, Row, SQLContext}
+import org.apache.spark.sql.{DataFrame, SQLContext}
 import org.apache.spark.sql.sources.{BaseRelation, TableScan}
-import org.apache.spark.sql.types.{StringType, StructField, StructType}
-import com.springml.salesforce.wave.model.{BatchInfo, BatchInfoList, JobInfo}
+import org.apache.spark.sql.types.StructType
+import com.springml.salesforce.wave.model.JobInfo
 import org.apache.http.Header
-import org.apache.spark.rdd.RDD
 import com.univocity.parsers.csv.CsvParser
 import com.univocity.parsers.csv.CsvParserSettings
 import com.univocity.parsers.csv.CsvWriterSettings
 import com.univocity.parsers.csv.CsvWriter
 import java.io.StringReader
 import java.io.StringWriter
+import java.util.stream.Collectors;
 
 import scala.collection.JavaConverters._
 import scala.concurrent.duration.{FiniteDuration, MILLISECONDS}
@@ -90,7 +88,8 @@ case class BulkRelation(
           val writer = new CsvWriter(outputWriter, writerSettings)
           parsedInput.foreach { writer.writeRow(_) }
 
-          outputWriter.toString.lines.toList
+          // outputWriter.toString.lines.toList
+          outputWriter.toString.lines.collect(Collectors.toList()).asScala
         }
 
         splitCsvByRows(result)

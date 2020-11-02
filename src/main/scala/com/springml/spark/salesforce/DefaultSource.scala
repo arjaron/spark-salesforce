@@ -167,7 +167,7 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
       upsert: Boolean,
       externalIdFieldName: String,
       batchSize: Integer,
-      data: DataFrame) {
+      data: DataFrame): Unit = {
 
     val csvHeader = Utils.csvHeadder(data.schema)
     logger.info("no of partitions before repartitioning is " + data.rdd.partitions.length)
@@ -255,7 +255,7 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
       upsert: Boolean,
       monitorJob: Boolean,
       data: DataFrame,
-      metadata: Option[String]) {
+      metadata: Option[String]): Unit = {
     val dataWriter = new DataWriter(username, password, login, version, datasetName, appName)
 
     val metaDataJson = Utils.metadata(metadata, usersMetadataConfig, data.schema, datasetName)
@@ -304,7 +304,7 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
 
 
   private def validateMutualExclusive(opt1: Option[String], opt2: Option[String],
-      opt1Name: String, opt2Name: String) {
+      opt1Name: String, opt2Name: String): Unit = {
     if ((opt1.isDefined && opt2.isDefined)) {
       sys.error(s"""Anyone '$opt1Name' or '$opt2Name' have to be specified for creating dataframe""")
     }

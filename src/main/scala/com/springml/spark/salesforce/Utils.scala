@@ -20,15 +20,13 @@ import scala.io.Source
 import scala.util.parsing.json._
 import com.sforce.soap.partner.{ Connector, PartnerConnection, SaveResult }
 import com.sforce.ws.ConnectorConfig
-import com.madhukaraphatak.sizeof.SizeEstimator
+// import com.madhukaraphatak.sizeof.SizeEstimator
 import org.apache.log4j.Logger
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.Row
-import org.apache.spark.sql.types.{ DoubleType, IntegerType, StructType }
+import org.apache.spark.sql.types.StructType
 
-import scala.collection.immutable.HashMap
 import com.springml.spark.salesforce.metadata.MetadataConstructor
-import com.sforce.soap.partner.sobject.SObject
 import scala.concurrent.duration._
 import com.sforce.soap.partner.fault.UnexpectedErrorFault
 

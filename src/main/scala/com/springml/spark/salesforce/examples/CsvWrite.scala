@@ -23,7 +23,7 @@ import org.apache.spark.sql.SparkSession
  */
 object CsvWrite {
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
 
     val ss = SparkSession.builder().master("local").appName("Test Utils").getOrCreate()
     val df = ss.read.option("header", "true").csv(args(1))

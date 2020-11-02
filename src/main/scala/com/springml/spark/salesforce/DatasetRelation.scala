@@ -16,6 +16,7 @@ import org.apache.spark.sql.types.{DoubleType, FloatType, IntegerType, LongType,
 import org.apache.spark.sql.types.{StructField, StructType, StringType, TimestampType}
 
 import scala.collection.JavaConversions.{asScalaBuffer, mapAsScalaMap}
+// import collection.JavaConverters.{asScalaBuffer, mapAsScalaMap}
 
 /**
  * Relation class for reading data from Salesforce and construct RDD
